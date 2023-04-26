@@ -20,23 +20,15 @@ public class HealthBar : MonoBehaviour
 
     public void DecreaseBar()
     {
-        StopBarCoroutine();
-
-        _player.TakeDamage(_graduationInterval);
-
-        _changeValueOfBarJob = StartCoroutine(ChangeBarValue(_player.CurrentHealth));
+        ChangeBarValue(-_graduationInterval);
     }
 
     public void IncreaseBar()
     {
-        StopBarCoroutine();
-
-        _player.Healing(_graduationInterval);
-
-        _changeValueOfBarJob = StartCoroutine(ChangeBarValue(_player.CurrentHealth));
+        ChangeBarValue(_graduationInterval);
     }
 
-    private IEnumerator ChangeBarValue(float targetHealth)
+    private IEnumerator ChangeSliderValue(float targetHealth)
     {
         while (_slider.value != targetHealth)
         {
@@ -46,11 +38,22 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    private void StopBarCoroutine()
+    private void ChangeBarValue(float valueDelta)
     {
         if (_changeValueOfBarJob != null)
         {
             StopCoroutine(_changeValueOfBarJob);
         }
+
+        if(valueDelta < 0) 
+        {
+            _player.TakeDamage(Mathf.Abs(_graduationInterval));
+        }
+        else
+        {
+            _player.Healing(_graduationInterval);
+        }
+
+        _changeValueOfBarJob = StartCoroutine(ChangeSliderValue(_player.CurrentHealth));
     }
 }

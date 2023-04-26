@@ -9,7 +9,6 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Slider _slider;
 
     private Coroutine _changeValueOfBarJob;
-    private float _graduationInterval = 10f;
 
     private void Start()
     {
@@ -18,14 +17,14 @@ public class HealthBar : MonoBehaviour
         _slider.value = _player.CurrentHealth;
     }
 
-    public void DecreaseBar()
+    public void ChangeBarValue()
     {
-        ChangeBarValue(-_graduationInterval);
-    }
+        if (_changeValueOfBarJob != null)
+        {
+            StopCoroutine(_changeValueOfBarJob);
+        }
 
-    public void IncreaseBar()
-    {
-        ChangeBarValue(_graduationInterval);
+        _changeValueOfBarJob = StartCoroutine(ChangeSliderValue(_player.CurrentHealth));
     }
 
     private IEnumerator ChangeSliderValue(float targetHealth)
@@ -36,24 +35,5 @@ public class HealthBar : MonoBehaviour
 
             yield return null;
         }
-    }
-
-    private void ChangeBarValue(float valueDelta)
-    {
-        if (_changeValueOfBarJob != null)
-        {
-            StopCoroutine(_changeValueOfBarJob);
-        }
-
-        if(valueDelta < 0) 
-        {
-            _player.TakeDamage(Mathf.Abs(_graduationInterval));
-        }
-        else
-        {
-            _player.Healing(_graduationInterval);
-        }
-
-        _changeValueOfBarJob = StartCoroutine(ChangeSliderValue(_player.CurrentHealth));
     }
 }

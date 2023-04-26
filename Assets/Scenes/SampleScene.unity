@@ -561,9 +561,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 981339561}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 520502937}
         m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
-        m_MethodName: DecreaseBar
+        m_MethodName: ChangeBarValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1057,9 +1069,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 981339561}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Healing
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 520502937}
         m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
-        m_MethodName: IncreaseBar
+        m_MethodName: ChangeBarValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
